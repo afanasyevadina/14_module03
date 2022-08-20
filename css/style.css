@@ -31,7 +31,7 @@
 }
 .logotype {
     font-size: 64px;
-    margin: 50px 0;
+    margin-bottom: 65px;
     font-weight: 400;
 }
 .paragraph {
@@ -39,23 +39,36 @@
     color: #FFFFFF;
 }
 .home-top {
-    padding: 30px;
+    padding: 54px;
 }
 .dots {
     display: flex;
     justify-content: center;
+    margin-bottom: 70px;
 }
 .dot {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: #2C4674;
+    background: #FFFFFF;
     margin: 0 4px;
     cursor: pointer;
 }
-.home-img img {
+.home-img {
+    aspect-ratio: 1;
+    overflow: hidden;
+    position: relative;
+}
+.home-img img.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: bottom;
     display: block;
+    transition: .3s;
 }
 .home-button {
     position: absolute;
@@ -79,16 +92,16 @@
     display: none;
 }
 #slide-1:checked ~ .home .dot:nth-child(1) {
-    background: #FFFFFF;
+    background: #2C4674;
 }
 #slide-1:checked ~ .home .home-img img.slide:nth-child(2) {
-    display: none;
+    transform: translateY(100%);
 }
 #slide-2:checked ~ .home .dot:nth-child(2) {
-    background: #FFFFFF;
+    background: #2C4674;
 }
 #slide-2:checked ~ .home .home-img img.slide:nth-child(1) {
-    display: none;
+    transform: translateY(100%);
 }
 
 .search {
@@ -199,11 +212,9 @@
 }
 .search-cards-cats .search-card-img {
     background: #D1723F;
-    background: radial-gradient(#FFFFFF 0%, #D1723F 0%);
 }
 .search-cards-dogs .search-card-img {
     background: #519E8A;
-    background: radial-gradient(#FFFFFF 0%, #D1723F 0%);
 }
 .search-card-img img {
     width: 100%;
@@ -211,6 +222,23 @@
     object-fit: contain;
     object-position: bottom;
     display: block;
+    transition: .5s .2s;
+    position: relative;
+}
+.search-card-img::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #FFFFFF;
+    border-radius: 50%;
+    transform: scale(0);
+    filter: blur(40px);
+}
+.search-card-img:not(:hover) img {
+    transform: translateY(6%);
 }
 .petname {
     font-size: 18px;
@@ -231,16 +259,15 @@
     justify-content: space-between;
 }
 .search-card-img {
-    transition: background .3s;
-}
-.search-cards-cats .search-card-img:hover {
-    background: radial-gradient(#FFFFFF 100%, #D1723F);
+    overflow: hidden;
+    position: relative;
 }
 .search-cards-cats .search-card-img:hover + .search-card-content {
     background: #D1723F;
 }
-.search-cards-dogs .search-card-img:hover {
-    background: radial-gradient(#FFFFFF 100%, #519E8A);
+.search-card-img:hover::before {
+    transition: .3s;
+    transform: scale(2);
 }
 .search-cards-dogs .search-card-img:hover + .search-card-content {
     background: #519E8A;
@@ -265,6 +292,7 @@
 .card {
     border-radius: 30px;
     overflow: hidden;
+    min-height: 100vh;
 }
 .card.cat-page {
     background: #E8DBD4;
@@ -391,6 +419,7 @@ label {
     border-radius: 40px;
     border: 2px solid #2C4674;
     padding: 50px 24px;
+    transition: .4s;
 }
 .menu-link {
     height: 60px;
@@ -402,6 +431,7 @@ label {
     font-size: 18px;
     margin-bottom: 12px;
     padding: 0 16px;
+    transition: .3s;
 }
 .menu-title {
     text-align: center;
@@ -421,4 +451,7 @@ label {
 }
 .menu-link:nth-child(3) {
     background: #2C4674;
+}
+.menu-link:hover {
+    transform: scale(1.05);
 }
